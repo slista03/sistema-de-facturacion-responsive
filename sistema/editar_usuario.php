@@ -17,6 +17,7 @@
 
             
             $query = mysqli_query($conection,"SELECT * FROM usuario WHERE (usuario = '$user' AND  idUsuario != $idUsuario) OR (correo = '$email' AND idUsuario != $idUsuario) ");
+
             $result = mysqli_fetch_array($query);
             if ($result > 0){
                 $alert = '<div class="alert alert-danger" role="alert">El Correo o el Usuario ya existe.
@@ -38,13 +39,16 @@
                 }
             }
         }
+        mysqli_close($conection);
     }
     //mostrar datos
     if(empty($_GET['id'])){
         header('Location: lista_usuario.php');
+        mysqli_close($conection);
     }
     $iduser = $_GET['id'];
     $sql = mysqli_query($conection, "SELECT u.idusuario, u.nombre, u.apellido, u.correo, u.usuario, (u.rol) as idrol, (r.rol) as rol FROM usuario u INNER JOIN rol r on u.rol = r.idrol WHERE idusuario= $iduser");
+    mysqli_close($conection);
     $result_sql = mysqli_num_rows($sql);
     if($result_sql == 0){
         header('location:lista_usuario.php');
@@ -126,7 +130,9 @@
 
                     <label for="rol">Tipo de Usuario</label>
                     <?php 
+                        include "../conexion/conexion.php";
                         $query_rol = mysqli_query($conection,"SELECT * FROM rol");
+                        mysqli_close($conection);
                         $result_rol = mysqli_num_rows($query_rol);                  
                     ?>
                     <div class="mb-3">

@@ -19,6 +19,7 @@
                 $busqueda = strtolower($_REQUEST['busqueda']);
                 if(empty($busqueda)){
                     header("location: lista_usuario.php");
+                    mysqli_close($conection);
                 }
 
             ?>
@@ -80,6 +81,7 @@
                         
                         
                         $query = mysqli_query($conection, "SELECT u.idusuario, u.nombre, u.apellido, u.correo, u.usuario, r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE (u.idusuario LIKE '%$busqueda%' OR u.nombre LIKE '%$busqueda%' OR u.apellido LIKE '%$busqueda%' OR u.correo LIKE '%$busqueda%' OR u.usuario LIKE '%$busqueda%' OR r.rol LIKE '%$busqueda%') AND estatus = 1 ORDER BY idusuario ASC LIMIT $desde,$por_pagina");
+                        mysqli_close($conection);
                         $result = mysqli_num_rows($query);
                         if($result > 0){
 

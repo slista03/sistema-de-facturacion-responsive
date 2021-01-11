@@ -17,6 +17,7 @@
 
             
             $query = mysqli_query($conection,"SELECT * FROM usuario WHERE usuario = '$user' OR correo = '$email' ");
+            mysqli_close($conection);
             $result = mysqli_fetch_array($query);
             if ($result > 0){
                 $alert = '<div class="alert alert-danger" role="alert">>El Correo o el Usuario ya existe.
@@ -111,6 +112,7 @@
                     <label for="rol">Tipo de Usuario</label>
                     <?php 
                         $query_rol = mysqli_query($conection,"SELECT * FROM rol");
+                        mysqli_close($conection);
                         $result_rol = mysqli_num_rows($query_rol);                  
                     ?>
                     <div class="mb-3">

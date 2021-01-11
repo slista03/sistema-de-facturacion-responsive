@@ -4,11 +4,13 @@
 	if(!empty($_POST)){
 		if($_POST['idusuario'] == 1){
 			header('location: lista_usuario.php');
+			mysqli_close($conection);
 			exit;
 		}
 		$idusuario=$_POST['idusuario'];
 		//$query_delete= mysqli_query($conection, "DELETE FROM usuario WHERE idusuario = $idusuario");
 		$query_delete = mysqli_query($conection,"UPDATE `usuario` SET `estatus` = '0' WHERE `usuario`.`idusuario` = $idusuario");
+		mysqli_close($conection);
 		if($query_delete){
 			header('location: lista_usuario.php');
 		}else{
@@ -19,9 +21,11 @@
 
 	if(empty($_REQUEST['id']) || ($_REQUEST['id'] == 1) ){
 		header('location: lista_usuario.php');
+		mysqli_close($conection);
 	}else{
 		$idusuario =$_REQUEST['id'];
 		$query = mysqli_query($conection, "SELECT u.nombre, u.apellido, u.usuario, r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE u.idusuario = $idusuario");
+		mysqli_close($conection);
 		$result = mysqli_num_rows($query);
 		if ($result > 0){
 			while($data = mysqli_fetch_array($query)){

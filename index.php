@@ -23,6 +23,7 @@
                 
                 #compara el usuario y contraseña con la base de datos y lo selecciona
                 $query = mysqli_query($conection, "SELECT * FROM usuario WHERE usuario = '$user' AND clave = '$pass'");
+                mysqli_close($conection);
                 $result = mysqli_num_rows($query);
                 #si existe o hay algun resultado
                 if( $result > 0 ){
