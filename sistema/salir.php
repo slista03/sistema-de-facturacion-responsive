@@ -1,5 +1,8 @@
 <?php
+    /* inicia sesion */
     session_start();
+    // destruye la sesion para no volver a ingresar
     session_destroy();
-    header('location: ../');
+    // redirecciona al index del directorio anterior
+    header('location: ../index.php');
 ?>
