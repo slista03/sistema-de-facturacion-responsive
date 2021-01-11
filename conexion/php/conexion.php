@@ -1,7 +1,7 @@
 <?php
     $host ='localhost';
     $user = 'root';
-    $password = 'jehova22';
+    $password = '';
     $db = 'sistema de facturacion';
 
     $conection = @mysqli_connect($host,$user,$password,$db);

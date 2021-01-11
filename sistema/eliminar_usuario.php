@@ -8,7 +8,6 @@
 			exit;
 		}
 		$idusuario=$_POST['idusuario'];
-		//$query_delete= mysqli_query($conection, "DELETE FROM usuario WHERE idusuario = $idusuario");
 		$query_delete = mysqli_query($conection,"UPDATE `usuario` SET `estatus` = '0' WHERE `usuario`.`idusuario` = $idusuario");
 		mysqli_close($conection);
 		if($query_delete){
