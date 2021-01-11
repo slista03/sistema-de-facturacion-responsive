@@ -9,14 +9,20 @@
         		<li class="nav-item">
 					<a class="nav-link" href="index.php">Inicio</a>
 				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Usuarios</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdown07XL">
-						<a class="dropdown-item" href="./registro_usuario.php">Nuevo Usuario</a>
-						<li><hr class="dropdown-divider"></li>
-						<a class="dropdown-item" href="./lista_usuario.php">Lista de Usuarios</a>
-					</ul>
-				</li>
+				<?php
+					//si el rol es de un administrador se mostrara esta opcion de usuarios
+					if($_SESSION['rol'] == 1){}
+				?>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Usuarios</a>
+						<ul class="dropdown-menu" aria-labelledby="dropdown07XL">
+							<a class="dropdown-item" href="./registro_usuario.php">Nuevo Usuario</a>
+							<li><hr class="dropdown-divider"></li>
+							<a class="dropdown-item" href="./lista_usuario.php">Lista de Usuarios</a>
+						</ul>
+					</li>
+				<?php
+				?>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Clientes</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown07XL">
