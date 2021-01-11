@@ -23,6 +23,7 @@
                 
                 #compara el usuario y contraseña con la base de datos y lo selecciona
                 $query = mysqli_query($conection, "SELECT * FROM usuario WHERE usuario = '$user' AND clave = '$pass'");
+                //cierra sesion del query
                 mysqli_close($conection);
                 $result = mysqli_num_rows($query);
                 #si existe o hay algun resultado
@@ -39,15 +40,15 @@
                     $_SESSION['email']  =$data['email'];
                     $_SESSION['user']   =$data['usuario'];
                     $_SESSION['rol']    =$data['rol'];
-
+                    //redirecciona a la carpeta de sistema
                     header('location: sistema/');
 
                 }else{
-
+                    //manda un error de que la contraseña o el usuario son incorrectos
                     $alert='<div class="alert alert-danger" style="border-radius: 20px;" role="alert">
                                 El usuario o contraseña son incorrectos
                             </div>';
-                
+                    //destruye la sesion para que no entre al sistema
                     session_destroy();
 
                 }
@@ -73,18 +74,23 @@
                     <div class="row"> 
                         <div style="text-align: center;">
                             <h1><b>Iniciar Sesión</b></h1>
+                            <!-- logo de la empresa o proyecto -->
                             <img width="200" height="200" src="./img/git.jpeg" class="img-fluid" alt="login">
+                            <!-- nombre del usuario -->
                             <div class="mb-3">
                                 <label for="usuario" class="form-label">Nombre de Usuario</label>
                                 <input type="Text" placeholder="Usuario" name="usuario" class="form-control" id="usuario" >
                             </div>
+                            <!-- contraseña -->
                             <div class="mb-3">
                                 <label for="clave" class="form-label">Contraseña</label>
                                 <input type="password" name="clave" placeholder="Contraseña" class="form-control" id="clave">
                             </div>
                             <div class="mb-3">
+                                <!-- si existe la variable de alerta la imprime sino no escribe nada dejando espacio en blanco -->
                                 <?php echo(isset($alert)? $alert : ''); ?>
                             </div>
+                            <!-- boton para enviar la informacion -->
                             <button type="submit" value="INICIAR SESIÓN" class="btn btn-outline-primary" style="border-radius: 20px;" >INICIAR SESIÓN</button>
                         </div>
                     </div> 
